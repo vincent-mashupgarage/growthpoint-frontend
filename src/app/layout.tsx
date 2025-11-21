@@ -36,7 +36,7 @@ const geistMono = Geist_Mono({
  */
 export const metadata: Metadata = {
   title: {
-    default: "GrowthPoint - Employee Directory",
+    default: "GrowthPoint",
     template: "%s | GrowthPoint", // For page-specific titles
   },
   description: "Comprehensive employee directory management system for GrowthPoint. Search, filter, and manage employee information efficiently.",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://growthpoint.com",
-    title: "GrowthPoint - Employee Directory",
+    title: "GrowthPoint",
     description: "Comprehensive employee directory management system for GrowthPoint",
     siteName: "GrowthPoint",
   },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   // Twitter Card metadata for Twitter/X sharing
   twitter: {
     card: "summary_large_image",
-    title: "GrowthPoint - Employee Directory",
+    title: "GrowthPoint",
     description: "Comprehensive employee directory management system",
     creator: "@growthpoint",
   },
