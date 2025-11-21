@@ -108,7 +108,7 @@ export default function PayslipModal({ isOpen, onClose, record }: PayslipModalPr
         <Dialog.Root open={isOpen} onOpenChange={onClose}>
             <Dialog.Portal>
                 <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
-                <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto z-50 p-6 border border-gray-200 dark:border-gray-800">
+                <Dialog.Content className="payslip-modal-content fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto z-50 p-6 border border-gray-200 dark:border-gray-800">
                     <div className="flex items-center justify-between mb-6 print:hidden">
                         <Dialog.Title className="text-xl font-bold text-gray-900 dark:text-white">
                             Payslip Detail
@@ -281,15 +281,32 @@ export default function PayslipModal({ isOpen, onClose, record }: PayslipModalPr
                             body * {
                                 visibility: hidden;
                             }
-                            #printable-payslip,
-                            #printable-payslip * {
+                            .payslip-modal-content,
+                            .payslip-modal-content * {
                                 visibility: visible;
                             }
+                            .payslip-modal-content {
+                                position: absolute !important;
+                                left: 0 !important;
+                                top: 0 !important;
+                                width: 100% !important;
+                                height: auto !important;
+                                transform: none !important;
+                                max-width: none !important;
+                                max-height: none !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                                overflow: visible !important;
+                                box-shadow: none !important;
+                                border: none !important;
+                                background: white !important;
+                            }
                             #printable-payslip {
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                width: 100%;
+                                border: none !important;
+                                padding: 20px !important;
+                            }
+                            .print\\:hidden {
+                                display: none !important;
                             }
                         }
                     `}</style>

@@ -43,8 +43,8 @@ const MODULES = [
         description: 'Monitor construction project progress, timelines, and resource allocation.',
         icon: Briefcase,
         href: '/projects',
-        color: 'bg-gradient-to-br from-purple-500 to-purple-600',
-        status: 'coming_soon' as const
+        color: 'bg-gradient-to-br from-blue-500 to-blue-600',
+        status: 'active' as const
     },
     {
         title: 'Timesheets',
