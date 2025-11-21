@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { InventoryItem } from '@/types/inventory';
 import { MapPin, Package, AlertTriangle, Wrench } from 'lucide-react';
-import { getStatusColor, getStatusLabel } from '@/lib/utils';
+import { getStatusColor, getStatusLabel, getInventoryStatusColor } from '@/lib/utils';
 
 interface InventoryCardProps {
     item: InventoryItem;
@@ -21,12 +21,7 @@ export default function InventoryCard({ item }: InventoryCardProps) {
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-2 right-2">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${item.status === 'Available' ? 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800' :
-                                item.status === 'In Use' ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800' :
-                                    item.status === 'Maintenance' ? 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800' :
-                                        item.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800' :
-                                            'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700'
-                            }`}>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getInventoryStatusColor(item.status)}`}>
                             {item.status}
                         </span>
                     </div>

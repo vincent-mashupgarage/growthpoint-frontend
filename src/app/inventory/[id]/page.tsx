@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { ArrowLeft, MapPin, Package, Calendar, DollarSign, Tag, Wrench, AlertTriangle, FileText } from 'lucide-react';
 import * as Tabs from '@radix-ui/react-tabs';
-import { getStatusColor, getStatusLabel } from '@/lib/utils';
+import { getStatusColor, getStatusLabel, getInventoryStatusColor } from '@/lib/utils';
 
 export default function InventoryDetailPage() {
     const params = useParams();
@@ -51,12 +51,7 @@ export default function InventoryDetailPage() {
                             </div>
                         </div>
                         <div className="flex items-center space-x-3">
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${item.status === 'Available' ? 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800' :
-                                    item.status === 'In Use' ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800' :
-                                        item.status === 'Maintenance' ? 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800' :
-                                            item.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800' :
-                                                'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700'
-                                }`}>
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${getInventoryStatusColor(item.status)}`}>
                                 {item.status}
                             </span>
                         </div>
