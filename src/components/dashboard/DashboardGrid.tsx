@@ -8,9 +8,8 @@ import {
     Briefcase,
     Clock,
     FileText,
-    Settings,
     BarChart3,
-    Truck
+    Banknote
 } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 
@@ -32,6 +31,14 @@ const MODULES = [
         status: 'active' as const
     },
     {
+        title: 'Payroll',
+        description: 'Process salaries, government deductions (SSS, PhilHealth), and generate payslips.',
+        icon: Banknote,
+        href: '/payroll',
+        color: 'bg-gradient-to-br from-rose-500 to-rose-600',
+        status: 'active' as const
+    },
+    {
         title: 'Projects',
         description: 'Monitor construction project progress, timelines, and resource allocation.',
         icon: Briefcase,
@@ -48,14 +55,6 @@ const MODULES = [
         status: 'coming_soon' as const
     },
     {
-        title: 'Fleet Management',
-        description: 'Manage vehicle maintenance schedules, assignments, and fuel usage.',
-        icon: Truck,
-        href: '/fleet',
-        color: 'bg-gradient-to-br from-cyan-500 to-cyan-600',
-        status: 'coming_soon' as const
-    },
-    {
         title: 'Documents',
         description: 'Centralized storage for blueprints, contracts, and safety manuals.',
         icon: FileText,
@@ -69,14 +68,6 @@ const MODULES = [
         icon: BarChart3,
         href: '/reports',
         color: 'bg-gradient-to-br from-indigo-500 to-indigo-600',
-        status: 'coming_soon' as const
-    },
-    {
-        title: 'Settings',
-        description: 'Configure system preferences, user roles, and company details.',
-        icon: Settings,
-        href: '/settings',
-        color: 'bg-gradient-to-br from-gray-600 to-gray-700',
         status: 'coming_soon' as const
     }
 ];
