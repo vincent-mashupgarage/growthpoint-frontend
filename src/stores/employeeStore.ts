@@ -26,6 +26,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'Site A - Downtown',
         skills: ['Project Management', 'Budgeting', 'Risk Management'],
         bio: 'Richard has over 15 years of experience managing large-scale commercial construction projects.',
+        salary: 65000
     },
     {
         id: '2',
@@ -40,6 +41,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         skills: ['Structural Analysis', 'AutoCAD', 'Revit', 'Concrete Design'],
         managerId: '1',
         bio: 'Sarah specializes in reinforced concrete structures and seismic design.',
+        salary: 55000
     },
     {
         id: '3',
@@ -54,6 +56,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         skills: ['Team Leadership', 'Blueprint Reading', 'OSHA Safety'],
         managerId: '1',
         bio: 'Mike ensures daily site operations run smoothly and safely.',
+        salary: 42000
     },
     {
         id: '4',
@@ -68,6 +71,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         skills: ['Risk Assessment', 'Safety Audits', 'First Aid'],
         managerId: '1',
         bio: 'Emily is dedicated to maintaining zero-accident workplaces across all projects.',
+        salary: 38000
     },
     {
         id: '5',
@@ -81,6 +85,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'Site B - Westside',
         skills: ['Masonry', 'Bricklaying', 'Stone Work'],
         managerId: '3',
+        salary: 35000
     },
     {
         id: '6',
@@ -94,6 +99,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'Remote',
         skills: ['Architectural Design', 'SketchUp', 'Sustainable Design'],
         managerId: '2',
+        salary: 52000
     },
     {
         id: '7',
@@ -107,6 +113,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'Site A - Downtown',
         skills: ['Electrical Systems', 'Wiring', 'Troubleshooting'],
         managerId: '3',
+        salary: 40000
     },
     {
         id: '8',
@@ -120,6 +127,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'Site B - Westside',
         skills: ['Crane Operation', 'Excavator Operation', 'Safety Protocols'],
         managerId: '3',
+        salary: 38000
     },
     {
         id: '9',
@@ -133,6 +141,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'HQ - Main Office',
         skills: ['Vendor Management', 'Supply Chain', 'Negotiation'],
         managerId: '1',
+        salary: 45000
     },
     {
         id: '10',
@@ -146,6 +155,7 @@ const MOCK_EMPLOYEES: Employee[] = [
         location: 'Site A - Downtown',
         skills: ['General Labor', 'Site Cleanup', 'Assistance'],
         managerId: '3',
+        salary: 28000
     },
 ];
 

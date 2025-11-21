@@ -13,4 +13,5 @@ export interface Employee {
     location: string;
     skills: string[];
     bio?: string;
+    salary: number;
 }
