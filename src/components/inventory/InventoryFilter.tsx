@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { InventoryCategory, InventoryStatus } from '@/types/inventory';
 
@@ -26,16 +26,22 @@ export default function InventoryFilter() {
     const setFilter = useInventoryStore((state) => state.setFilter);
     const items = useInventoryStore((state) => state.items);
 
-    // Calculate counts
-    const categoryCounts = CATEGORIES.reduce((acc, cat) => {
-        acc[cat] = items.filter(i => i.category === cat).length;
-        return acc;
-    }, {} as Record<string, number>);
+    // Memoize category counts to avoid recalculating on every render
+    // Only recalculates when items array changes
+    const categoryCounts = useMemo(() => {
+        return CATEGORIES.reduce((acc, cat) => {
+            acc[cat] = items.filter(i => i.category === cat).length;
+            return acc;
+        }, {} as Record<string, number>);
+    }, [items]);
 
-    const statusCounts = STATUSES.reduce((acc, stat) => {
-        acc[stat] = items.filter(i => i.status === stat).length;
-        return acc;
-    }, {} as Record<string, number>);
+    // Memoize status counts for performance optimization
+    const statusCounts = useMemo(() => {
+        return STATUSES.reduce((acc, stat) => {
+            acc[stat] = items.filter(i => i.status === stat).length;
+            return acc;
+        }, {} as Record<string, number>);
+    }, [items]);
 
     const allCount = items.length;
 

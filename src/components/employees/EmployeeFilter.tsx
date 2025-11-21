@@ -1,26 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useEmployeeStore } from '@/stores/employeeStore';
-
-const DEPARTMENTS = [
-    'Operations',
-    'Engineering & Design',
-    'Safety & Compliance',
-    'Equipment Management',
-    'Procurement',
-];
+import { DEPARTMENTS } from '@/constants/departments';
 
 export default function EmployeeFilter() {
     const filter = useEmployeeStore((state) => state.filter);
     const setFilter = useEmployeeStore((state) => state.setFilter);
     const employees = useEmployeeStore((state) => state.employees);
 
-    // Calculate counts
-    const deptCounts = DEPARTMENTS.reduce((acc, dept) => {
-        acc[dept] = employees.filter(e => e.department === dept).length;
-        return acc;
-    }, {} as Record<string, number>);
+    // Memoize department counts to avoid recalculating on every render
+    // Only recalculates when employees array changes
+    const deptCounts = useMemo(() => {
+        return DEPARTMENTS.reduce((acc, dept) => {
+            acc[dept] = employees.filter(e => e.department === dept).length;
+            return acc;
+        }, {} as Record<string, number>);
+    }, [employees]);
 
     const allCount = employees.length;
 
