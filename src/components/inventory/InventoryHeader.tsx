@@ -12,6 +12,12 @@ export default function InventoryHeader() {
     const filter = useInventoryStore((state) => state.filter);
     const setFilter = useInventoryStore((state) => state.setFilter);
 
+    /**
+     * Debounced search handler
+     *
+     * Delays search filter update by 300ms to prevent excessive re-renders.
+     * Includes input sanitization to prevent XSS attacks.
+     */
     const debouncedSetFilter = useMemo(
         () => debounce((value: string) => {
             const sanitized = sanitizeInput(value);
@@ -20,8 +26,35 @@ export default function InventoryHeader() {
         [setFilter]
     );
 
+    /**
+     * Handle search input change with validation
+     *
+     * Validation rules:
+     * - Maximum length: 100 characters (prevents DoS attacks)
+     * - Allowed characters: alphanumeric, spaces, hyphens, slashes, parentheses
+     * - Prevents: Special characters that could be used for XSS or injection
+     *
+     * Benefits:
+     * - Security: Prevents malicious input before it reaches the store
+     * - Performance: Rejects overly long inputs that could slow down filtering
+     * - UX: Allows common inventory search patterns (SKUs, model numbers)
+     */
     const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        debouncedSetFilter(e.target.value);
+        const value = e.target.value;
+
+        // Validate input length to prevent DoS
+        if (value.length > 100) {
+            return; // Silently reject - don't update
+        }
+
+        // Allow safe characters including those common in SKUs and product codes
+        // Letters, numbers, spaces, hyphens, slashes, parentheses, periods
+        const safePattern = /^[a-zA-Z0-9\s\-/.()]*$/;
+        if (!safePattern.test(value)) {
+            return; // Silently reject invalid characters
+        }
+
+        debouncedSetFilter(value);
     }, [debouncedSetFilter]);
 
     return (

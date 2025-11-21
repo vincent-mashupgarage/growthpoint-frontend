@@ -35,13 +35,35 @@ export default function EmployeeHeader() {
     );
 
     /**
-     * Handle search input change
+     * Handle search input change with validation
      *
-     * This handler is called on every keystroke, but it only triggers the
-     * debounced filter update, not an immediate re-render of the employee list.
+     * This handler validates input before triggering the debounced filter update.
+     * Validation rules:
+     * - Maximum length: 100 characters (prevents DoS attacks)
+     * - Allowed characters: alphanumeric, spaces, hyphens, apostrophes, periods, @
+     * - Prevents: Special characters that could be used for XSS or injection
+     *
+     * Benefits:
+     * - Security: Prevents malicious input before it reaches the store
+     * - Performance: Rejects overly long inputs that could slow down filtering
+     * - UX: Provides immediate feedback on invalid input
      */
     const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        debouncedSetFilter(e.target.value);
+        const value = e.target.value;
+
+        // Validate input length to prevent DoS
+        if (value.length > 100) {
+            return; // Silently reject - don't update
+        }
+
+        // Allow only safe characters: letters, numbers, spaces, hyphens, apostrophes, periods, @
+        // This prevents injection attacks while allowing normal search patterns
+        const safePattern = /^[a-zA-Z0-9\s\-'.@]*$/;
+        if (!safePattern.test(value)) {
+            return; // Silently reject invalid characters
+        }
+
+        debouncedSetFilter(value);
     }, [debouncedSetFilter]);
 
     return (
