@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import type { EmployeeStatus } from "@/types/employee";
+import type { InventoryStatus } from "@/types/inventory";
 
 /**
  * Utility function to merge Tailwind CSS classes
@@ -88,6 +89,43 @@ export function getStatusLabel(status: EmployeeStatus): string {
 }
 
 /**
+ * Get the Tailwind CSS classes for an inventory item status badge
+ *
+ * This centralizes inventory status color logic to ensure consistency across the application.
+ * Returns complete badge styling including background, text, and border colors for both light and dark modes.
+ *
+ * Example:
+ * ```tsx
+ * const badgeClasses = getInventoryStatusColor('Available');
+ * <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${badgeClasses}`}>
+ *   Available
+ * </span>
+ * ```
+ *
+ * Benefits:
+ * - DRY - Single source of truth for inventory status styling
+ * - Consistency - All status badges use the same color scheme
+ * - Maintainability - Change colors in one place to update everywhere
+ * - Dark mode support - Includes appropriate colors for both themes
+ * - Type-safe - TypeScript ensures only valid status values are passed
+ *
+ * @param status - The inventory item status
+ * @returns Tailwind CSS classes for badge styling (background, text, border)
+ */
+export function getInventoryStatusColor(status: InventoryStatus): string {
+  const statusColorMap: Record<InventoryStatus, string> = {
+    'Available': 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800',
+    'In Use': 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800',
+    'Maintenance': 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800',
+    'Low Stock': 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800',
+    'Out of Stock': 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800',
+    'Retired': 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700',
+  };
+
+  return statusColorMap[status];
+}
+
+/**
  * Debounce function to limit how often a function can be called
  *
  * This is a higher-order function that wraps another function and delays its execution
@@ -117,7 +155,7 @@ export function getStatusLabel(status: EmployeeStatus): string {
  * @param delay - Delay in milliseconds (typical: 300ms for search, 150ms for UI updates)
  * @returns Debounced version of the function
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: never[]) => unknown>(
   func: T,
   delay: number
 ): (...args: Parameters<T>) => void {
