@@ -1,5 +1,5 @@
-import CounterDemo from "@/components/shared/counter-demo";
+import DashboardGrid from "@/components/dashboard/DashboardGrid";
 
 export default function Home() {
-  return <CounterDemo />;
+  return <DashboardGrid />;
 }
