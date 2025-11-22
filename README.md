@@ -1,3 +1,6 @@
+<img width="1887" height="939" alt="image" src="https://github.com/user-attachments/assets/03e039f1-94dd-428a-b513-a234e5c6e235" />
+
+
 # GrowthPoint Frontend
 
 A modern, production-ready Next.js application built with TypeScript, Radix UI, Zustand, and Tailwind CSS.
