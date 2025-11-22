@@ -21,7 +21,7 @@ export default function EmployeeFilter() {
     const allCount = employees.length;
 
     return (
-        <div className="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 h-[calc(100vh-64px)] overflow-y-auto hidden md:block transition-colors">
+        <div className="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 h-full overflow-y-auto hidden md:block transition-colors">
             <div className="p-4">
                 <h2 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
                     Departments

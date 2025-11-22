@@ -24,7 +24,7 @@ export default function EmployeeDirectoryPage() {
     }, [employees, filter]);
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col transition-colors">
+        <div className="h-screen overflow-hidden bg-gray-50 dark:bg-gray-950 flex flex-col transition-colors">
             <EmployeeHeader />
             <div className="flex flex-1 overflow-hidden">
                 <EmployeeFilter />
